@@ -13,7 +13,7 @@ namespace Negocio
         {
             List<Articulo> listaArticulos = new List<Articulo>();
             AccesoDatos accesoDatosArticulo = new AccesoDatos();
-            List<Imagen> listaDeImagenes = new List<Imagenes>();
+            List<Imagen> listaDeImagenes = new List<Imagen>();
             ImagenNegocio ImagenNegocio = new ImagenNegocio();
             try
             {
