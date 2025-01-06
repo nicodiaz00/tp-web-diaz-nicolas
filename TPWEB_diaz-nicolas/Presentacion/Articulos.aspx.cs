@@ -24,13 +24,15 @@ namespace Presentacion
                 repetidorArticulos.DataSource = listaArticulos;
                 repetidorArticulos.DataBind();
 
-                
+
             }
         }
 
         protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
+            //Caoturo id del articulo para llevarlo a la pantalla formulario
 
+            int valor = int.Parse(((Button)sender).CommandArgument); // capturo id y lo paso a int
         }
     }
 }
