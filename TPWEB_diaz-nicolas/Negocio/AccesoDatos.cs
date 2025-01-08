@@ -68,6 +68,22 @@ namespace Negocio
                 conexion.Close();
             }
         }
+        public int obtenerId()
+        {
+            try
+            {
+                string consulta = "SELECT CAST(SCOPE_IDENTITY() AS INT)";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = consulta;
+
+
+                return Convert.ToInt32(comando.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: " + ex.ToString());
+            }
+        }
     }
 }
 
