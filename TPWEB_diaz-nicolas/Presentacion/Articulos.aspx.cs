@@ -38,7 +38,7 @@ namespace Presentacion
 
             Session["articulo"] = articuloNegocio.seleccionarArticulo(valor);
 
-            Response.Redirect("Registro.aspx", false);
+            Response.Redirect("DocumentoForm.aspx", false);
 
 
 
