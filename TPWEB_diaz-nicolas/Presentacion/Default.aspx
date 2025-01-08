@@ -4,7 +4,7 @@
 
     <main>
         <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">Lista voucher</h1>
+            <h1 id="aspnetTitle"></h1>
             
         </section>
         <section class="row">

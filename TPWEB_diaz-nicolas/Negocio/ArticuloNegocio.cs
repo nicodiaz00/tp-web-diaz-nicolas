@@ -53,5 +53,52 @@ namespace Negocio
                 accesoDatosArticulo.cerrarConexion();
             }
         }
+        public Articulo seleccionarArticulo(int id)
+        {
+            Articulo articuloAux = new Articulo();
+            
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setearConsulta("Select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, C.descripcion as Categoria, M.descripcion as Marca, A.Precio  from ARTICULOS A, CATEGORIAS C, MARCAS M where A.IdMarca = M.Id and A.IdCategoria = C.Id and A.Id =" + id);
+                
+                accesoDatos.ejecutarLectura();
+                
+
+                while (accesoDatos.Lector.Read())
+                {
+                    Articulo articulo = new Articulo();
+                    articulo.Id = (int)accesoDatos.Lector["Id"];
+                    articulo.CodigoArticulo = (string)accesoDatos.Lector["Codigo"];
+                    articulo.Nombre = (string)accesoDatos.Lector["Nombre"];
+                    articulo.DescripcionArticulo = (string)accesoDatos.Lector["Descripcion"];
+                    articulo.Precio = Math.Round((decimal)accesoDatos.Lector["Precio"], 0);
+
+                    articulo.Marca = new Marca();
+                    articulo.Marca.Id = (int)accesoDatos.Lector["IdMarca"];
+                    articulo.Marca.DescripcionMarca = (string)accesoDatos.Lector["Marca"];
+
+                    articulo.Categoria = new Categoria();
+                    articulo.Categoria.Id = (int)accesoDatos.Lector["IdCategoria"];
+                    articulo.Categoria.DescripcionCategoria = (string)accesoDatos.Lector["Categoria"];
+                    List<Imagen> listaDeImagenes = new List<Imagen>();
+                    ImagenNegocio ImagenNegocio = new ImagenNegocio();
+                    articulo.Imagenes = ImagenNegocio.listarImagenesId(articulo.Id);
+
+                    articuloAux = articulo;
+
+                }
+                return articuloAux;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+            }
+        }
     }
 }

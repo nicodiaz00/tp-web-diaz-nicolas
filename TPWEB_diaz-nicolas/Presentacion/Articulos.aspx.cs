@@ -30,9 +30,23 @@ namespace Presentacion
 
         protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+
             //Caoturo id del articulo para llevarlo a la pantalla formulario
 
             int valor = int.Parse(((Button)sender).CommandArgument); // capturo id y lo paso a int
+
+            Session["articulo"] = articuloNegocio.seleccionarArticulo(valor);
+
+            Response.Redirect("Registro.aspx", false);
+
+
+
+
+
+
+
+
         }
     }
 }
