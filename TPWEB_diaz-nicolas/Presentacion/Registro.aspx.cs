@@ -13,6 +13,8 @@ namespace Presentacion
 	{
         public Articulo Articulo { get; set; }
 		public Cliente Cliente { get; set; }
+        public Voucher voucher { get; set; }
+        private DateTime DateTime { get; set; }
         protected void Page_Load(object sender, EventArgs e)
 		{
 			if(!IsPostBack)
@@ -20,6 +22,7 @@ namespace Presentacion
 				if (Session["articulo"] != null)
 				{
                     Articulo = (Articulo)Session["articulo"];
+                    DateTime = DateTime.Now;
                     if (Session["cliente"]!= null)
 					{
                         Cliente = (Cliente)Session["cliente"];
@@ -32,10 +35,12 @@ namespace Presentacion
                         txtCiudad.Text = Cliente.Ciudad.ToString();
                         txtCodigoPostal.Text = Cliente.Cp.ToString();
                         txtCodigoArticulo.Text = Articulo.CodigoArticulo.ToString();
+                        txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
 					}
 					else
 					{
                         txtCodigoArticulo.Text = Articulo.CodigoArticulo.ToString();
+                        txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     }
 					
 					
@@ -44,5 +49,10 @@ namespace Presentacion
 				}
 			}
 		}
-	}
+
+        protected void btnParticipar_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

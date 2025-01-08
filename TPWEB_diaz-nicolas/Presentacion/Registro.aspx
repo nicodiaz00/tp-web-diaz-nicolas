@@ -39,7 +39,11 @@
                 <asp:TextBox runat="server" CssClass="form-control" ID="txtCodigoArticulo" Enabled="false"></asp:TextBox>
             </div>
             <div class="mb-3">
-                
+                <label for="txtFechaCanje" class="form-label">Fecha</label>
+                <asp:TextBox runat="server" CssClass="form-control" ID="txtFecha" Enabled="false" TextMode="DateTime"></asp:TextBox>
+            </div>
+            <div class="mb-3">
+                <asp:Button runat="server" ID="btnParticipar" CssClass="btn btn-primary" Text="Participar" OnClick="btnParticipar_Click"/>
             </div>
 
 

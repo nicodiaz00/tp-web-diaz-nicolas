@@ -13,6 +13,8 @@ namespace Presentacion
         private List<Cliente> listaCliente { get; set; }
         private Cliente Cliente { get; set; }
 
+        
+
         private Cliente encontrarCliente(string dni, List<Cliente> listadoCliente)
         {
             Cliente cliente = null;
