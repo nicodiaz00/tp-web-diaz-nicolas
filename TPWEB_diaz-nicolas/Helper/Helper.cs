@@ -12,5 +12,10 @@ namespace Helper
         {
             return !string.IsNullOrEmpty(texto);
         }
+
+        public static bool ValidarDocumento(string texto)
+        {
+            return texto.Length == 8;
+        }
     }
 }

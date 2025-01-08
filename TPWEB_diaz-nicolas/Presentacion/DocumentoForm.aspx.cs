@@ -46,20 +46,52 @@ namespace Presentacion
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             string documento = txtDocumento.Text;
-            List<Cliente> listadoDeClientes = (List<Cliente>)Session["clientes"];
-            Cliente = encontrarCliente(documento, listadoDeClientes);
 
-            if(Cliente != null)
+            if (Helper.Helper.ValidarMinimoCaracteres(documento))
             {
-                Session["cliente"] = Cliente;
-                Response.Redirect("Registro.aspx", false);
+                if (Helper.Helper.ValidarDocumento(documento))
+                {
+                    List<Cliente> listadoDeClientes = (List<Cliente>)Session["clientes"];
+                    Cliente = encontrarCliente(documento, listadoDeClientes);
 
+                    if (Cliente != null)
+                    {
+                        Session["cliente"] = Cliente;
+                        Response.Redirect("Registro.aspx", false);
+
+                    }
+                    else
+                    {
+                        Response.Redirect("Registro.aspx", false);
+                    }
+                }
+                else
+                {
+                    lblerrorDni.Text = "El documento debe tener al menos 8 dígitos numéricos";
+                    btnIngresar.Visible = false;
+                    btnErrorDni.Visible = true;
+
+                }
             }
             else
             {
-                Response.Redirect("Registro.aspx", false);
+                lblerrorDni.Text = "No puede estar vacio";
+                btnIngresar.Visible = false;
+                btnErrorDni.Visible = true;
             }
+            
 
+            
+            
+
+        }
+
+        protected void btnErrorDni_Click(object sender, EventArgs e)
+        {
+            lblerrorDni.Text = "";
+            txtDocumento.Text=string.Empty;
+            btnIngresar.Visible = true;
+            btnErrorDni.Visible = false;
         }
     }
 }
