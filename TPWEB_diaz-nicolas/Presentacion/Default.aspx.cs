@@ -22,17 +22,41 @@ namespace Presentacion
                 if (cupon.CodigoVoucher.ToString() == codigo)
                 {
 
-                    if (cupon.IdCliente != -1)
-                    {
-                        lblMensaje.Text = "Cupon canjeado";
-                        return null;
-                    }
+                   
                     voucher = cupon;
                     break;
                 }
             }
 
             return voucher;
+        }
+        private void cuponUsado(Voucher voucher)
+        {
+            if (voucher == null)
+            {
+                Response.Redirect("Error.aspx", false);
+                Session["voucher"] = null;
+            }
+            else if(voucher != null)
+            {
+                if(voucher.IdCliente == -1)
+                {
+                    Session["voucher"] = voucher;
+                    Response.Redirect("Articulos.aspx", false);
+                }else if(voucher.IdCliente != -1)
+                {
+                    Session["voucher"] = voucher;
+                    Response.Redirect("Error.aspx", false);
+                }
+            }
+            
+                
+            
+            else
+            {
+                Response.Redirect("Articulos.aspx", false);
+                Session["voucher"]=voucher;
+            }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -55,11 +79,7 @@ namespace Presentacion
 
                 voucher = encontrarVoucher(txtVoucher.Text, vouchers);
 
-                if (voucher != null)
-                {
-                    Session["voucher"] = voucher; // Guardo el voucher en session para recuperarlo cuando el usuario se registre y participe por el premio.
-                    Response.Redirect("Articulos.aspx", true);
-                }
+                cuponUsado(voucher);
 
             }
         }

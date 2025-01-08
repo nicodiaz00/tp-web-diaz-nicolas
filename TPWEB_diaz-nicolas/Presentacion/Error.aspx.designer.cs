@@ -11,25 +11,25 @@ namespace Presentacion
 {
 
 
-    public partial class _Default
+    public partial class Error
     {
 
         /// <summary>
-        /// Control txtVoucher.
+        /// Control lblError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVoucher;
+        protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
-        /// Control btnCanjearCupon.
+        /// Control btnVolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCanjearCupon;
+        protected global::System.Web.UI.WebControls.Button btnVolver;
     }
 }
