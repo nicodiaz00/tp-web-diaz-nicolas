@@ -19,18 +19,28 @@ namespace Presentacion
 			{
 				if (Session["articulo"] != null)
 				{
-					Articulo = (Articulo)Session["articulo"];
-					Cliente = (Cliente)Session["cliente"];
+                    Articulo = (Articulo)Session["articulo"];
+                    if (Session["cliente"]!= null)
+					{
+                        Cliente = (Cliente)Session["cliente"];
+                        txtId.Text = Cliente.Id.ToString();
+                        txtDocumentoCliente.Text = Cliente.Dni.ToString();
+                        txtNombre.Text = Cliente.Nombre.ToString();
+                        txtApellido.Text = Cliente.Apellido.ToString();
+                        txtEmail.Text = Cliente.Email.ToString();
+                        txtDireccion.Text = Cliente.Direccion.ToString();
+                        txtCiudad.Text = Cliente.Ciudad.ToString();
+                        txtCodigoPostal.Text = Cliente.Cp.ToString();
+                        txtCodigoArticulo.Text = Articulo.CodigoArticulo.ToString();
+					}
+					else
+					{
+                        txtCodigoArticulo.Text = Articulo.CodigoArticulo.ToString();
+                    }
+					
+					
 
-					txtId.Text = Cliente.Id.ToString();
-					txtDocumentoCliente.Text = Cliente.Dni.ToString();
-					txtNombre.Text = Cliente.Nombre.ToString();
-					txtApellido.Text = Cliente.Apellido.ToString();	
-					txtEmail.Text = Cliente.Email.ToString();
-					txtDireccion.Text = Cliente.Direccion.ToString();
-					txtCiudad.Text = Cliente.Ciudad.ToString();
-					txtCodigoPostal.Text = Cliente.Cp.ToString();
-					txtCodigoArticulo.Text = Articulo.CodigoArticulo.ToString();
+					
 				}
 			}
 		}
