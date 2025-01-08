@@ -21,7 +21,9 @@ namespace Presentacion
 			{
 				if (Session["articulo"] != null)
 				{
+                    
                     Articulo = (Articulo)Session["articulo"];
+                    voucher = (Voucher)Session["voucher"];
                     DateTime = DateTime.Now;
                     if (Session["cliente"]!= null)
 					{
@@ -34,12 +36,12 @@ namespace Presentacion
                         txtDireccion.Text = Cliente.Direccion.ToString();
                         txtCiudad.Text = Cliente.Ciudad.ToString();
                         txtCodigoPostal.Text = Cliente.Cp.ToString();
-                        txtCodigoArticulo.Text = Articulo.CodigoArticulo.ToString();
+                        txtCodigoArticulo.Text = Articulo.Id.ToString();
                         txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
 					}
 					else
 					{
-                        txtCodigoArticulo.Text = Articulo.CodigoArticulo.ToString();
+                        txtCodigoArticulo.Text = Articulo.Id.ToString();
                         txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     }
 					
@@ -52,6 +54,20 @@ namespace Presentacion
 
         protected void btnParticipar_Click(object sender, EventArgs e)
         {
+            if (IsPostBack)
+            {
+                VoucherNegocio voucherNegocio = new VoucherNegocio();
+                voucher = (Voucher)Session["voucher"];
+                voucher.IdArticulo = int.Parse(txtCodigoArticulo.Text);
+                voucher.IdCliente = int.Parse(txtId.Text);
+                voucher.FechaCanje = DateTime.Parse(txtFecha.Text);
+
+
+
+                voucherNegocio.modificarVoucher(voucher);
+
+            }
+
 
         }
     }

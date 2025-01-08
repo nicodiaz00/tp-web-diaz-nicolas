@@ -50,7 +50,9 @@ namespace Negocio
                 accesoDatos.setearParametro("@idCliente", voucher.IdCliente);
                 accesoDatos.setearParametro("@fechaCanje", voucher.FechaCanje);
                 accesoDatos.setearParametro("@idArticulo", voucher.IdArticulo);
+                accesoDatos.setearParametro("@codigoVoucher", voucher.CodigoVoucher);
 
+                accesoDatos.ejecutarAccion();
 
             }
             catch (Exception ex)
