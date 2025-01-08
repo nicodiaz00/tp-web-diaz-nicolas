@@ -45,6 +45,31 @@ namespace Negocio
                 accesoDatos.cerrarConexion();
             }
         }
+        public void registrarCliente(Cliente clienteNuevo)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setearConsulta("insert into Clientes(Documento, Nombre, Apellido, Email, Direccion, Ciudad, CP) values (@documento, @nombre, @apellido, @email, @direccion, @ciudad, @cp)");
+                accesoDatos.setearParametro("@documento", clienteNuevo.Dni);
+                accesoDatos.setearParametro("@nombre", clienteNuevo.Nombre);
+                accesoDatos.setearParametro("@apellido", clienteNuevo.Apellido);
+                accesoDatos.setearParametro("@email", clienteNuevo.Email);
+                accesoDatos.setearParametro("@direccion", clienteNuevo.Direccion);
+                accesoDatos.setearParametro("@ciudad", clienteNuevo.Ciudad);
+                accesoDatos.setearParametro("@cp", clienteNuevo.Cp);
+
+                accesoDatos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        
     }
 }
 

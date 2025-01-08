@@ -54,17 +54,53 @@ namespace Presentacion
 
         protected void btnParticipar_Click(object sender, EventArgs e)
         {
+            VoucherNegocio voucherNegocio = new VoucherNegocio();
+            AccesoDatos accesoDatos = new AccesoDatos();
+
             if (IsPostBack)
             {
-                VoucherNegocio voucherNegocio = new VoucherNegocio();
-                voucher = (Voucher)Session["voucher"];
-                voucher.IdArticulo = int.Parse(txtCodigoArticulo.Text);
-                voucher.IdCliente = int.Parse(txtId.Text);
-                voucher.FechaCanje = DateTime.Parse(txtFecha.Text);
+                if (Session["cliente"] == null)
+                {
+                    Cliente clienteAux = new Cliente();
+                    ClienteNegocio clienteNegocio = new ClienteNegocio();
+                    
+
+                    clienteAux.Dni = txtDocumentoCliente.Text;
+                    clienteAux.Nombre = txtNombre.Text;
+                    clienteAux.Apellido = txtApellido.Text;
+                    clienteAux.Email = txtEmail.Text;
+                    clienteAux.Direccion = txtDireccion.Text;
+                    clienteAux.Ciudad = txtCiudad.Text;
+                    clienteAux.Cp = int.Parse(txtCodigoPostal.Text);
+
+                    clienteNegocio.registrarCliente(clienteAux);
+
+                    int ultimoId= accesoDatos.obtenerUltimoIdCliente();
+
+                    
+                    voucher = (Voucher)Session["voucher"];
+                    voucher.IdArticulo = int.Parse(txtCodigoArticulo.Text);
+                    voucher.IdCliente = ultimoId;
+                    voucher.FechaCanje = DateTime.Parse(txtFecha.Text);
+                    voucherNegocio.modificarVoucher(voucher);
 
 
+                    Response.Redirect("Exito.aspx",false);
 
-                voucherNegocio.modificarVoucher(voucher);
+                }
+                else
+                {
+                    voucher = (Voucher)Session["voucher"];
+                    voucher.IdArticulo = int.Parse(txtCodigoArticulo.Text);
+                    voucher.IdCliente = int.Parse(txtId.Text);
+                    voucher.FechaCanje = DateTime.Parse(txtFecha.Text);
+
+                    voucherNegocio.modificarVoucher(voucher);
+                    Response.Redirect("Exito.aspx", false);
+
+                }
+                
+                
 
             }
 

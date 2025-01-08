@@ -84,6 +84,27 @@ namespace Negocio
                 throw new Exception("Error: " + ex.ToString());
             }
         }
+        public int obtenerUltimoIdCliente()
+        {
+            
+            int ultimoId = 0;
+            try
+            {
+                comando.Connection = conexion;
+                comando.Connection.Open();
+                string consulta = "SELECT IDENT_CURRENT('Clientes') AS LastInsertedId";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = consulta;
+                ultimoId = Convert.ToInt32(comando.ExecuteScalar());
+                return ultimoId;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
+        }
     }
 }
 
