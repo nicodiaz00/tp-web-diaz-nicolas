@@ -275,6 +275,10 @@
       <Project>{51a22ce9-fdf4-4eed-925a-2a427a741294}</Project>
       <Name>Dominio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{d91e3d74-e866-4c8f-8013-37c75499e271}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Negocio\Negocio.csproj">
       <Project>{59ad28e1-9026-45da-b147-e8b7002a60a3}</Project>
       <Name>Negocio</Name>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Helper;
 
 namespace Presentacion
 {
@@ -70,18 +71,35 @@ namespace Presentacion
         }
         protected void btnCanjearCupon_Click(object sender, EventArgs e)
         {
-            List<Voucher> vouchers = new List<Voucher>();
-            Voucher voucher = new Voucher();
+            if (Helper.Helper.ValidarMinimoCaracteres(txtVoucher.Text)){
+                
+                List<Voucher> vouchers = new List<Voucher>();
+                Voucher voucher = new Voucher();
 
-            if (Session["listadoVoucher"] != null)
-            {
-                vouchers = (List<Voucher>)Session["listadoVoucher"]; // RECUPERO EL LISTADO DE LA SESSION PARA PODER ENCONTRAR EL CUPON
+                if (Session["listadoVoucher"] != null)
+                {
+                    vouchers = (List<Voucher>)Session["listadoVoucher"]; // RECUPERO EL LISTADO DE LA SESSION PARA PODER ENCONTRAR EL CUPON
 
-                voucher = encontrarVoucher(txtVoucher.Text, vouchers);
+                    voucher = encontrarVoucher(txtVoucher.Text, vouchers);
 
-                cuponUsado(voucher);
+                    cuponUsado(voucher);
 
+                }
             }
+            else
+            {
+                lblError.Text = "Debes ingresar el codigo";
+
+                btnCanjearCupon.Visible = false;
+                btnRecargar.Visible = true;
+            }
+            
+        }
+
+        protected void btnRecargar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx", false);
+            Session.Clear();
         }
     }
 }

@@ -18,10 +18,15 @@
                     <p>Ingresa el codigo y participa</p>
                     <asp:TextBox runat="server" CssClass="form-control" ID="txtVoucher"></asp:TextBox>
                     
+                    
                 </div>
                 <div class="mb-4">
                     <asp:Button  runat="server" ID="btnCanjearCupon" OnClick="btnCanjearCupon_Click" Text="Canjear Cupon" CssClass="btn btn-primary"/>
 
+                </div>
+                <div class="mb-4">
+                    <asp:Label runat="server" ID="lblError" Text=""></asp:Label>
+                    <asp:Button  runat="server" ID="btnRecargar" Visible="false" Text="Aceptar" CssClass="btn btn-warning" OnClick="btnRecargar_Click"/>
                 </div>
                 
 
