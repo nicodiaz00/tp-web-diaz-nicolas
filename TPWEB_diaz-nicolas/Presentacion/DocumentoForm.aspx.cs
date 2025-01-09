@@ -39,39 +39,48 @@ namespace Presentacion
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             string documento = txtDocumento.Text;
-
-            if (Helper.Helper.ValidarMinimoCaracteres(documento))
+            if (Helper.Helper.EsNumero(documento))
             {
-                if (Helper.Helper.ValidarDocumento(documento))
+                if (Helper.Helper.campoVacio(documento))
                 {
-                    List<Cliente> listadoDeClientes = (List<Cliente>)Session["clientes"];
-                    Cliente = encontrarCliente(documento, listadoDeClientes);
-
-                    if (Cliente != null)
+                    if (Helper.Helper.ValidarDocumento(documento))
                     {
-                        Session["cliente"] = Cliente;
-                        Response.Redirect("Registro.aspx", false);
+                        List<Cliente> listadoDeClientes = (List<Cliente>)Session["clientes"];
+                        Cliente = encontrarCliente(documento, listadoDeClientes);
 
+                        if (Cliente != null)
+                        {
+                            Session["cliente"] = Cliente;
+                            Response.Redirect("Registro.aspx", false);
+
+                        }
+                        else
+                        {
+                            Response.Redirect("Registro.aspx", false);
+                        }
                     }
                     else
                     {
-                        Response.Redirect("Registro.aspx", false);
+                        lblerrorDni.Text = "El documento debe tener al menos 8 dígitos numéricos";
+                        btnIngresar.Visible = false;
+                        btnErrorDni.Visible = true;
+
                     }
                 }
                 else
                 {
-                    lblerrorDni.Text = "El documento debe tener al menos 8 dígitos numéricos";
+                    lblerrorDni.Text = "No puede estar vacio";
                     btnIngresar.Visible = false;
                     btnErrorDni.Visible = true;
-
                 }
             }
             else
             {
-                lblerrorDni.Text = "No puede estar vacio";
+                lblerrorDni.Text = "Debes ingresar numeros";
                 btnIngresar.Visible = false;
                 btnErrorDni.Visible = true;
-            }   
+            }
+               
         }
         protected void btnErrorDni_Click(object sender, EventArgs e)
         {

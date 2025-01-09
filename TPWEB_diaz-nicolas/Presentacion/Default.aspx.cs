@@ -71,7 +71,7 @@ namespace Presentacion
         }
         protected void btnCanjearCupon_Click(object sender, EventArgs e)
         {
-            if (Helper.Helper.ValidarMinimoCaracteres(txtVoucher.Text)){
+            if (Helper.Helper.campoVacio(txtVoucher.Text)){
                 
                 List<Voucher> vouchers = new List<Voucher>();
                 Voucher voucher = new Voucher();

@@ -15,6 +15,37 @@ namespace Presentacion
 		public Cliente Cliente { get; set; }
         public Voucher voucher { get; set; }
         private DateTime DateTime { get; set; }
+
+        private void desactivartxt()
+        {
+            txtId.Enabled = false;
+            txtDocumentoCliente.Enabled = false;
+            txtNombre.Enabled = false;
+            txtApellido.Enabled = false;
+            txtEmail.Enabled = false;
+            txtDireccion.Enabled = false;
+            txtCiudad.Enabled= false;
+            txtCodigoPostal.Enabled = false;
+            txtCodigoArticulo.Enabled = false;
+            txtFecha.Enabled= false;
+
+        }
+        private void mostrarlbl()
+        {
+            lblrequerido1.Visible = true;
+            lblrequerido2.Visible = true;
+            lblrequerido3.Visible = true;
+            lblrequerido4.Visible = true;
+            lblrequerido5.Visible = true;
+            lblrequerido6.Visible = true;
+            lblrequerido7.Visible = true;
+        }
+        private void desactivartxt2()
+        {
+            txtId.Enabled = false;
+            txtCodigoArticulo.Enabled = false;
+            txtFecha.Enabled = false;
+        }
         protected void Page_Load(object sender, EventArgs e)
 		{
 			if(!IsPostBack)
@@ -38,11 +69,14 @@ namespace Presentacion
                         txtCodigoPostal.Text = Cliente.Cp.ToString();
                         txtCodigoArticulo.Text = Articulo.Id.ToString();
                         txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                        desactivartxt();
 					}
 					else
 					{
                         txtCodigoArticulo.Text = Articulo.Id.ToString();
                         txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                        desactivartxt2();
+                        mostrarlbl();
                     }
 					
 					

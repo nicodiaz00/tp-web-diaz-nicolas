@@ -8,7 +8,7 @@ namespace Helper
 {
     public  static class Helper
     {
-        public static bool ValidarMinimoCaracteres(string texto)
+        public static bool campoVacio(string texto)
         {
             return !string.IsNullOrEmpty(texto);
         }
@@ -16,6 +16,11 @@ namespace Helper
         public static bool ValidarDocumento(string texto)
         {
             return texto.Length == 8;
+        }
+        public static bool EsNumero(string texto)
+        {
+            int numero;
+            return Int32.TryParse(texto, out numero);
         }
     }
 }
