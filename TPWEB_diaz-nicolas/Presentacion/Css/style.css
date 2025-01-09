@@ -1,0 +1,24 @@
+﻿.contenedorMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px
+}
+body{
+    background-color:whitesmoke;
+}
+.filaMain {
+    height: 90vh; /* 100% de la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Opcional: centra el contenido verticalmente */
+}
+.card{
+    width:400px;
+    height:400px;
+}
+.colArticulos{
+    display:flex;
+    flex-direction:column;
+}

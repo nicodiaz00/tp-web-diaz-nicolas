@@ -117,6 +117,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Css\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="DocumentoForm.aspx" />
     <Content Include="Error.aspx" />

@@ -13,8 +13,6 @@ namespace Presentacion
         private List<Cliente> listaCliente { get; set; }
         private Cliente Cliente { get; set; }
 
-        
-
         private Cliente encontrarCliente(string dni, List<Cliente> listadoCliente)
         {
             Cliente cliente = null;
@@ -28,7 +26,6 @@ namespace Presentacion
             }
             return cliente;
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,12 +34,8 @@ namespace Presentacion
                 listaCliente= clienteNegocio.listarClientes();
 
                 Session["clientes"] = listaCliente;
-
-
-
             }
         }
-
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             string documento = txtDocumento.Text;
@@ -78,14 +71,8 @@ namespace Presentacion
                 lblerrorDni.Text = "No puede estar vacio";
                 btnIngresar.Visible = false;
                 btnErrorDni.Visible = true;
-            }
-            
-
-            
-            
-
+            }   
         }
-
         protected void btnErrorDni_Click(object sender, EventArgs e)
         {
             lblerrorDni.Text = "";

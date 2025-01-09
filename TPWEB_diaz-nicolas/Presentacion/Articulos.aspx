@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 colArticulos">
 
             <asp:Repeater runat="server" ID="repetidorArticulos">
 
